@@ -29,3 +29,12 @@ Run the following command to run startup migrations.
 ```js
 adonis migration:run
 ```
+## Comandos do Adonis
+Os comandos disponiveis no Adonis para a aplicação.
+```
+adonis make:view posts/index
+adonis make:controller Posts
+adonis make:migration posts
+adonis migration:run
+adonis make:model Post
+```
