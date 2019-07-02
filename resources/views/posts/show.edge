@@ -8,7 +8,7 @@
 
     <hr>
 
-    <a href="/posts/edit/{{ post.id }}" class="btn btn-dark d-block float-left">Edit</a>
+    <a href="/posts/{{ post.id }}/edit" class="btn btn-dark d-block float-left">Edit</a>
 
 <form action="{{ '/posts/' + post.id + '?_method=DELETE' }}" method="post">
     {{ csrfField() }}
