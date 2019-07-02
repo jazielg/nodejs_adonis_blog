@@ -18,11 +18,12 @@ const Route = use('Route')
 
 Route.on('/').render('home')
 
-Route.post('/posts', 'PostController.store')
 Route.get('/posts', 'PostController.index')
 Route.get('/posts/edit/:id', 'PostController.edit')
+Route.get('/posts/create', 'PostController.create')
 Route.get('/posts/:id', 'PostController.show')
 
-Route.get('/posts/create', 'PostController.create')
+Route.post('/posts', 'PostController.store')
 Route.put('/posts/:id', 'PostController.update')
+Route.delete('/posts/:id', 'PostController.destroy')
 // Route.get('/test', () => 'Hello World')
