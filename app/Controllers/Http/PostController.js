@@ -1,6 +1,7 @@
 'use strict'
 
 const Post = use('App/Models/Post')
+const { validate } = use('Validator')
 
 class PostController {
     
@@ -22,6 +23,27 @@ class PostController {
     async create({ view }) {
         return view.render('posts.create')
     }
+
+    async store({ request, response, session }) {
+        const validation = await validate(request.all(), {
+            title: 'required|min:3|max:255',
+            body: 'required|min:3'
+        })
+
+        if(validation.fails()) {
+            session.withErrors(validation.messages()).flashAll()
+            return response.redirect('back')
+        }
+
+        const post = new Post()
+        post.title = request.input('title')
+        post.body = request.input('body')
+        await post.save()
+
+        session.flash({ notification: 'Post added!' })
+
+        return response.redirect('/posts')
+    } 
 }
 
 module.exports = PostController
